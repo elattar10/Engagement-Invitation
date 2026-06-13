@@ -350,82 +350,228 @@ body {
 }
 
 /* ══════════════════════════════════════
-   COUPLE PHOTO BOX
+   FAMILIES BOX — REDESIGNED
 ══════════════════════════════════════ */
-.couple-photo-box {
+.families-box {
   position: relative;
   margin: 4px 0 8px;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.couple-photo-frame {
+/* Outer decorative border with corner ornaments */
+.families-outer {
   position: relative;
-  display: inline-block;
-  padding: 6px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
-  box-shadow: 0 8px 32px rgba(201,163,93,0.35), 0 0 0 3px rgba(201,163,93,0.15);
-  animation: frameGlow 3s ease-in-out infinite;
-}
-@keyframes frameGlow {
-  0%, 100% { box-shadow: 0 8px 32px rgba(201,163,93,0.35), 0 0 0 3px rgba(201,163,93,0.15); }
-  50%       { box-shadow: 0 8px 40px rgba(201,163,93,0.55), 0 0 0 5px rgba(201,163,93,0.25); }
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(201,163,93,0.08), rgba(255,253,248,0.5), rgba(201,163,93,0.08));
 }
 
-.couple-photo-frame::before {
+/* Animated shimmer border */
+.families-outer::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border-radius: 24px;
+  inset: -3px;
+  border-radius: 20px;
   background: conic-gradient(from 0deg, transparent 0%, var(--gold-light) 20%, transparent 40%, var(--gold) 60%, transparent 80%, var(--gold-light) 100%);
   z-index: -1;
   animation: rotateBorder 6s linear infinite;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 @keyframes rotateBorder {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-.couple-photo-inner {
+.families-inner {
+  border: 1px solid rgba(201,163,93,0.3);
   border-radius: 15px;
-  overflow: hidden;
-  border: 3px solid rgba(255,253,248,0.9);
+  padding: 20px 18px 18px;
+  background: rgba(255,253,248,0.9);
   position: relative;
-}
-
-.couple-photo-inner img {
-  width: 100%;
-  max-width: 280px;
-  display: block;
-  border-radius: 13px;
+  overflow: hidden;
 }
 
 /* Corner ornaments */
-.couple-corner {
+.couple-photo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+.couple-photo {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  border: 6px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(63,79,56,0.18);
+  outline: 1px solid rgba(201,163,93,0.5);
+  outline-offset: 4px;
+}
+
+.families-inner .fam-corner {
   position: absolute;
+  font-size: 22px;
+  color: var(--gold);
+  opacity: 0.7;
+  line-height: 1;
+  font-family: serif;
+}
+.fam-corner.tl { top: 6px; right: 8px; }
+.fam-corner.tr { top: 6px; left: 8px; }
+.fam-corner.bl { bottom: 6px; right: 8px; }
+.fam-corner.br { bottom: 6px; left: 8px; }
+
+/* Arabesque watermark in center */
+.families-inner::before {
+  content: '❋';
+  position: absolute;
+  font-size: 100px;
+  color: var(--gold);
+  opacity: 0.04;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  font-family: serif;
+}
+
+.families-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.families-bismillah-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.families-bismillah-line .fam-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.5;
+  max-width: 50px;
+}
+.families-bismillah-icon {
   font-size: 20px;
   color: var(--gold);
-  opacity: 0.85;
-  line-height: 1;
-  z-index: 2;
+  opacity: 0.8;
 }
-.couple-corner.tl { top: -12px; right: -12px; }
-.couple-corner.tr { top: -12px; left: -12px; }
-.couple-corner.bl { bottom: -12px; right: -12px; }
-.couple-corner.br { bottom: -12px; left: -12px; }
 
-.couple-photo-caption {
-  margin-top: 14px;
+.families-invite-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(92,111,82,0.55);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.families-invite-text {
+  font-size: 15px;
+  color: var(--green-deep);
+  line-height: 1.85;
+  font-weight: 500;
+}
+
+.families-invite-text .accent {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Divider between text and family names */
+.families-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.families-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+.families-divider-center {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gold);
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* Family names row */
+.families-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.family-block {
+  text-align: center;
+  position: relative;
+}
+
+.family-tag {
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  opacity: 0.75;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.family-name {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--green-deep);
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(201,163,93,0.15);
+  position: relative;
+}
+
+/* Underline shimmer on family names */
+.family-name::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+.family-sep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--gold);
+  opacity: 0.7;
+  font-size: 11px;
+  padding: 0 4px;
+}
+
+/* Bottom blessing */
+.families-blessing {
+  text-align: center;
+  margin-top: 12px;
   font-size: 12px;
   color: var(--green);
-  opacity: 0.75;
+  opacity: 0.8;
   font-style: italic;
   letter-spacing: 0.5px;
-  text-align: center;
 }
 
 /* ══════════════════════════════════════
@@ -955,17 +1101,18 @@ body {
     </div>
 
     <!-- ══ COUPLE PHOTO BOX ══ -->
-    <div class="couple-photo-box reveal-item">
-      <div class="couple-photo-frame">
-        <span class="couple-corner tl">❧</span>
-        <span class="couple-corner tr">❧</span>
-        <span class="couple-corner bl">❧</span>
-        <span class="couple-corner br">❧</span>
-        <div class="couple-photo-inner">
-          <img src="couple-child.png" alt="أحمد وزينب" />
+    <div class="families-box reveal-item">
+      <div class="families-outer">
+        <div class="families-inner couple-photo-inner">
+          <!-- Corner ornaments -->
+          <span class="fam-corner tl">❧</span>
+          <span class="fam-corner tr">❧</span>
+          <span class="fam-corner bl">❧</span>
+          <span class="fam-corner br">❧</span>
+
+          <img src="couple.jpg" alt="العريس والعروسة" class="couple-photo">
         </div>
       </div>
-      <div class="couple-photo-caption">بارك الله لهما وبارك عليهما وجمع بينهما في خير 🌿</div>
     </div>
 
     <div class="invite-ornament reveal-item">
@@ -1055,7 +1202,7 @@ body {
 <!-- ══════════════ MUSIC BTN ══════════════ -->
 <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="موسيقى">🔇</button>
 <audio id="bg-music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -1289,7 +1436,7 @@ function copyLink() {
 /* ─── Add to Google Calendar ─── */
 function addToCalendar() {
   const title   = encodeURIComponent('حفل خطوبة أحمد وزينب 💍');
-  const details = encodeURIComponent('حفل خطوبة مبارك - عائلات العطار ومحرات\nDiarb Negm, LE Plaza Hall');
+  const details = encodeURIComponent('حفل خطوبة مبارك\nDiarb Negm, LE Plaza Hall');
   const location = encodeURIComponent('Diarb Negm, LE Plaza Hall');
   const start   = '20260615T180000Z'; // 8PM Cairo = 6PM UTC
   const end     = '20260615T210000Z';
